@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <DataTemplate x:Key="RepositoryTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Source="{StaticResource GitIcon}"
+                   Width="15" Margin="2"/>
+            <TextBlock Grid.Column="1"
+                       Text="{Binding Name}"
+                       TextTrimming="CharacterEllipsis"
+                       Margin="5,0,0,0"/>
+        </Grid>
+    </DataTemplate>
+    
+</ResourceDictionary>

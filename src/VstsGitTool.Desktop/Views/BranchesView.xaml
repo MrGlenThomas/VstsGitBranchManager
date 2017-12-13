@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="VstsGitTool.Desktop.Views.BranchesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VstsGitTool.Desktop.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="0">
+            <Image Source="{StaticResource GitLightIcon}"
+                   Style="{StaticResource TitleIcon}"/>
+            <TextBlock Style="{StaticResource LightTitle}" Margin="2,0,0,0"
+                       VerticalAlignment="Center">Repositories</TextBlock>
+            <Button Style="{StaticResource MetroCircleButtonStyle}"
+                    Margin="8,4"
+                    Height="24"
+                    Width="24"
+                    Padding="5"
+                    Command="{Binding RefreshRepositoriesCommand}">
+                <Image Source="{StaticResource RefreshLightIcon}" Width="14"/>
+            </Button>
+            <ComboBox ItemsSource="{Binding Projects}"
+                      SelectedItem="{Binding SelectedRepositoriesProject}"
+                      VerticalAlignment="Center"
+                      Width="150"
+                      Margin="15,0,0,0"
+                      DisplayMemberPath="Name"/>
+        </StackPanel>
+        <ListBox Grid.Column="0"
+                 Grid.Row="1"
+                 ItemsSource="{Binding Repositories}"
+                 SelectedItem="{Binding SelectedRepository}"
+                 ItemTemplate="{StaticResource RepositoryTemplate}"/>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1">
+            <Image Source="{StaticResource BranchLightIcon}"
+                   Style="{StaticResource TitleIcon}"/>
+            <TextBlock Style="{StaticResource LightTitle}" Margin="2,0,0,0"
+                       VerticalAlignment="Center">Branches</TextBlock>
+            <Button Style="{StaticResource MetroCircleButtonStyle}"
+                    Margin="8,4"
+                    Height="24"
+                    Width="24"
+                    Padding="5"
+                    Command="{Binding RefreshBranchesCommand}">
+                <Image Source="{StaticResource RefreshLightIcon}" Width="14"/>
+            </Button>
+        </StackPanel>
+        <local:BranchesMenuView Grid.Column="1" HorizontalAlignment="Right"/>
+        <ListBox Grid.Column="1"
+                 Grid.Row="1"
+                 ItemsSource="{Binding Branches}"
+                 SelectedItem="{Binding SelectedBranch}"
+                 ItemTemplate="{StaticResource BranchTemplate}"/>
+    </Grid>
+</UserControl>

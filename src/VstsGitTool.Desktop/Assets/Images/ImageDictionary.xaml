@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <BitmapImage x:Key="BacklogItemIcon" UriSource="BacklogItem.png"/>
+    <BitmapImage x:Key="TaskIcon" UriSource="Task.png"/>
+    <BitmapImage x:Key="BugIcon" UriSource="Bug.png"/>
+    <BitmapImage x:Key="PersonIcon" UriSource="Person.png"/>
+    <BitmapImage x:Key="GitIcon" UriSource="Git.png"/>
+    <BitmapImage x:Key="GitBigIcon" UriSource="GitBig.png"/>
+    <BitmapImage x:Key="GitLightIcon" UriSource="GitLight.png"/>
+    <BitmapImage x:Key="BranchIcon" UriSource="Branch.png"/>
+    <BitmapImage x:Key="BranchLightIcon" UriSource="BranchLight.png"/>
+    <BitmapImage x:Key="FolderIcon" UriSource="Folder.png"/>
+    <BitmapImage x:Key="QueryIcon" UriSource="Query.png"/>
+    <BitmapImage x:Key="WorkItemIcon" UriSource="WorkItem.png"/>
+    <BitmapImage x:Key="WorkItemLightIcon" UriSource="WorkItemLight.png"/>
+    <BitmapImage x:Key="RefreshIcon" UriSource="Refresh.png"/>
+    <BitmapImage x:Key="RefreshLightIcon" UriSource="RefreshLight.png"/>
+    <BitmapImage x:Key="ErrorIcon" UriSource="Error.png"/>
+    <BitmapImage x:Key="WarningIcon" UriSource="Warning.png"/>
+    <BitmapImage x:Key="ProjectIcon" UriSource="Project.png"/>
+    
+</ResourceDictionary>

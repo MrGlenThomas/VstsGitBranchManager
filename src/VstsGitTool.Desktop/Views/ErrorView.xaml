@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="VstsGitTool.Desktop.Views.ErrorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="1100" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource SquareButtonStyle}">
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border Background="{StaticResource ControlBackgroundBrush}" Opacity="0.3"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Height="200" Width="400"
+                Grid.Row="1" Grid.Column="1"
+                BorderThickness="2"
+                BorderBrush="{StaticResource ControlBackgroundBrush}"
+                Background="{StaticResource LightTextBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="26" Source="{StaticResource ErrorIcon}" Margin="10,10,0,10"/>
+                        <TextBlock Grid.Row ="0"
+                                   Grid.Column="1"
+                                   Margin="10,10,0,10"
+                                   Style="{StaticResource Title}"
+                                   Text="ERROR"/>
+                    </Grid>
+                    <TextBlock Grid.Row="1" Margin="10,5"
+                               Text="{Binding ErrorViewModel.Message}"
+                               TextWrapping="Wrap"/>
+                    <Border Grid.Row="4"
+                        Background="{StaticResource ControlBackgroundBrush}"/>
+                    <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Grid.Row="4">
+                        <Button Width="60"
+                                Command="{Binding CloseErrorCommand}">CLOSE</Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

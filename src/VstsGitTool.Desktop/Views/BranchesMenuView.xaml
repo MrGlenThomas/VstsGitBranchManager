@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="VstsGitTool.Desktop.Views.BranchesMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VstsGitTool.Desktop.Views"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource SquareButtonStyle}">
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding CreateBranchCommand}" Content="CREATE BRANCH"/>
+            <Button Command="{Binding LinkBranchToWorkItemCommand}" Content="LINK BRANCH TO WORK ITEM"/>
+            <Button Command="{Binding DeleteBranchCommand}" Content="DELETE BRANCH"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="VstsGitTool.Desktop.Views.CreateBranchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VstsGitTool.Desktop.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="1100" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource SquareButtonStyle}">
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border Background="{StaticResource ControlBackgroundBrush}" Opacity="0.3"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Height="330" Width="500"
+                Grid.Row="1" Grid.Column="1"
+                BorderThickness="2"
+                BorderBrush="{StaticResource ControlBackgroundBrush}"
+                Background="{StaticResource LightTextBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid  Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="26" Source="{StaticResource BranchIcon}" Margin="10,10,0,10"/>
+                        <TextBlock Grid.Row ="0"
+                                   Grid.Column="1"
+                                   Margin="10,10,0,10"
+                                   Style="{StaticResource Title}"
+                                   Text="Create a branch"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="10,5">Project</TextBlock>
+                        <ContentPresenter Grid.Row="1"
+                                          Margin="10,5"
+                                          ContentTemplate="{StaticResource ProjectTemplate}"
+                                          Content="{Binding SelectedRepositoriesProject}"/>
+                        <TextBlock Margin="10,5"
+                                   Grid.Column="1">Repository</TextBlock>
+                        <ContentPresenter Grid.Row="1"
+                                          Grid.Column="1"
+                                          Margin="10,5"
+                                          ContentTemplate="{StaticResource RepositoryTemplate}"
+                                          Content="{Binding CreateBranchViewModel.Repository}"/>
+                    </Grid>
+                    <StackPanel Grid.Row="2">
+                        <TextBlock Margin="10,5">Name</TextBlock>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox ItemsSource="{Binding CreateBranchViewModel.BranchGroups}"
+                                      SelectedItem="{Binding CreateBranchViewModel.BranchGroup}"
+                                      Width="70"
+                                      Margin="10,5,0,5"/>
+                            <TextBox Margin="5,5,10,5"
+                                     Grid.Column="1"
+                                     Text="{Binding CreateBranchViewModel.BranchName}"/>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3">
+                        <TextBlock Margin="10,5">Based on</TextBlock>
+                        <ComboBox Margin="10,5"
+                              ItemsSource="{Binding Branches}"
+                              SelectedItem="{Binding CreateBranchViewModel.BasedOnBranch}"
+                              ItemTemplate="{StaticResource BranchTemplate}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4"
+                                Visibility="{Binding CreateBranchViewModel.CanLinkToWorkItem, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <CheckBox Margin="10,10,0,0"
+                                  x:Name="LinkToWorkItemCheckBox"
+                                  IsChecked="{Binding CreateBranchViewModel.LinkToWorkItem}">Link to work item</CheckBox>
+                        <Grid Margin="30,4,10,10" IsEnabled="{Binding ElementName=LinkToWorkItemCheckBox, Path=IsChecked}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{StaticResource WorkItemIcon}" Width="15"
+                                   VerticalAlignment="Top"/>
+                            <TextBlock Text="{Binding CreateBranchViewModel.WorkItem.Title}"
+                                       Margin="5,0,0,0"
+                                       TextWrapping="Wrap"
+                                       TextTrimming="WordEllipsis"
+                                       Grid.Column="1"/>
+                        </Grid>
+                    </StackPanel>
+                    <Border Grid.Row="5"
+                        Background="{StaticResource ControlBackgroundBrush}"/>
+                    <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Grid.Row="5">
+                        <Button Command="{Binding ConfirmCreateBranchCommand}">CREATE BRANCH</Button>
+                        <Button Command="{Binding CancelCreateBranchCommand}">CANCEL</Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

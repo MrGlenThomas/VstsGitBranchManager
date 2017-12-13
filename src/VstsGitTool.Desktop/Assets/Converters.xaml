@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:VstsGitTool.Desktop.Converters">
+    
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <converters:BoolInverter x:Key="BoolInverter"/>
+    <converters:NullableToVisibilityConverter x:Key="NullableToVisibilityConverter"
+                                              NullVisibility="Collapsed"
+                                              NotNullVisibility="Visible"/>
+    
+</ResourceDictionary>
