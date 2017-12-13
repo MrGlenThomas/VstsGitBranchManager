@@ -11,5 +11,7 @@
     <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="Transparent"/>
     <SolidColorBrush x:Key="ButtonBorderBrush" Color="White"/>
     <SolidColorBrush x:Key="ControlsDisabledBrush" Color="LightGray"/>
+    <SolidColorBrush x:Key="SelectionBorderBrush" Color="DarkOrange"/>
+    <SolidColorBrush x:Key="SelectionBackgroundBrush" Color="#FFBD23"/>
 
 </ResourceDictionary>
