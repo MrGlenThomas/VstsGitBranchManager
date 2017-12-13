@@ -32,14 +32,15 @@
             <ComboBox ItemsSource="{Binding Projects}"
                       SelectedItem="{Binding SelectedRepositoriesProject}"
                       VerticalAlignment="Center"
-                      Width="150"
+                      Width="200"
                       Margin="15,0,0,0"
-                      DisplayMemberPath="Name"/>
+                      ItemTemplate="{StaticResource ProjectTemplate}"/>
         </StackPanel>
         <ListBox Grid.Column="0"
                  Grid.Row="1"
                  ItemsSource="{Binding Repositories}"
                  SelectedItem="{Binding SelectedRepository}"
+                 SelectionMode="Single"
                  ItemTemplate="{StaticResource RepositoryTemplate}"/>
         <StackPanel Orientation="Horizontal"
                     Grid.Column="1">

@@ -28,9 +28,9 @@
             <ComboBox ItemsSource="{Binding Projects}"
                       SelectedItem="{Binding SelectedWorkItemsProject}"
                       VerticalAlignment="Center"
-                      Width="150"
+                      Width="200"
                       Margin="10,0,0,0"
-                      DisplayMemberPath="Name"/>
+                      ItemTemplate="{StaticResource ProjectTemplate}"/>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -48,6 +48,7 @@
             <ListBox Grid.Column="2"
                      ItemsSource="{Binding WorkItems}"
                      SelectedItem="{Binding SelectedWorkItem}"
+                     SelectionMode="Single"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      ItemTemplate="{StaticResource WorkItemCardTemplate}">
                 <ListBox.ItemsPanel>
