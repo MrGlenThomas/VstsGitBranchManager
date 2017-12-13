@@ -78,7 +78,7 @@
                                     Margin="2">
                             <Image Source="{StaticResource BranchIcon}" Width="12"/>
                             <TextBlock Text="{Binding BranchCount}" Margin="2"
-                                       FontSize="11"/>
+                                       FontSize="12"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
