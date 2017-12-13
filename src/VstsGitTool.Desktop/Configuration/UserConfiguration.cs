@@ -27,5 +27,19 @@ namespace VstsGitTool.Desktop.Configuration
         }
 
 	    public static string BranchNameFormatString => ConfigurationManager.AppSettings["BranchNameFormatString"];
-    }
+
+	    public static int MaxBranchNameLength
+	    {
+		    get
+		    {
+				var settingValue = ConfigurationManager.AppSettings["MaxBranchNameLength"];
+
+			    var maxBranchNameLength = -1;
+
+			    int.TryParse(settingValue, out maxBranchNameLength);
+
+			    return maxBranchNameLength;
+		    }
+	    }
+	}
 }

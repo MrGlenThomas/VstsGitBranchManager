@@ -54,7 +54,7 @@ namespace VstsGitTool.Desktop.ViewModels
 	    {
 		    var workItemId = workItem.Id;
 		    var workItemTitle = workItem.Title.MakeGitBranchNameSafe();
-		    var workItemAssignedTo = workItem.AssignedTo.Substring(0, workItem.AssignedTo.IndexOf(" ")).MakeGitBranchNameSafe();
+		    var workItemAssignedTo = workItem.AssignedTo.MakeGitBranchNameSafe();
 		    var workItemType = workItem.Type.MakeGitBranchNameSafe();
 
 		    var branchNameFormatString = UserConfiguration.BranchNameFormatString;
@@ -64,6 +64,14 @@ namespace VstsGitTool.Desktop.ViewModels
 
 		    var branchName = string.Format(branchNameFormatString, workItemId, workItemTitle, workItemType,
 			    workItemAssignedTo);
+
+		    var maxBranchNameLength = UserConfiguration.MaxBranchNameLength;
+
+		    if (maxBranchNameLength > 0)
+		    {
+			    maxBranchNameLength = Math.Min(maxBranchNameLength, branchName.Length);
+			    branchName = branchName.Substring(0, maxBranchNameLength);
+		    }
 
 		    return branchName;
 	    }
