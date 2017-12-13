@@ -100,19 +100,10 @@
                         <CheckBox Margin="10,10,0,0"
                                   x:Name="LinkToWorkItemCheckBox"
                                   IsChecked="{Binding CreateBranchViewModel.LinkToWorkItem}">Link to work item</CheckBox>
-                        <Grid Margin="30,4,10,10" IsEnabled="{Binding ElementName=LinkToWorkItemCheckBox, Path=IsChecked}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{StaticResource WorkItemIcon}" Width="15"
-                                   VerticalAlignment="Top"/>
-                            <TextBlock Text="{Binding CreateBranchViewModel.WorkItem.Title}"
-                                       Margin="5,0,0,0"
-                                       TextWrapping="Wrap"
-                                       TextTrimming="WordEllipsis"
-                                       Grid.Column="1"/>
-                        </Grid>
+                        <ContentPresenter Margin="30,4,10,10"
+                                          ContentTemplate="{StaticResource WorkItemTemplate}"
+                                          Content="{Binding CreateBranchViewModel.WorkItem}"
+                                          IsEnabled="{Binding ElementName=LinkToWorkItemCheckBox, Path=IsChecked}"/>
                     </StackPanel>
                     <Border Grid.Row="5"
                         Background="{StaticResource ControlBackgroundBrush}"/>
