@@ -85,7 +85,7 @@
                                       Margin="10,5,0,5"/>
                             <TextBox Margin="5,5,10,5"
                                      Grid.Column="1"
-                                     Text="{Binding CreateBranchViewModel.BranchName}"/>
+                                     Text="{Binding CreateBranchViewModel.BranchName, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.Row="3">

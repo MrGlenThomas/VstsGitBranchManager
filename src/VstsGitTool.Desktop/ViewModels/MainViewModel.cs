@@ -203,14 +203,16 @@ namespace VstsGitTool.Desktop.ViewModels
         {
             _vstsClientFactory = new VstsClientFactory(VstsConfiguration.CollectionUri, VstsConfiguration.AccessToken);
 
-            RefreshQueriesCommand = new RelayCommand(RefreshQueries);
+            RefreshQueriesCommand = new RelayCommand(RefreshQueries, o => SelectedWorkItemsProject != null);
             RefreshWorkItemsCommand = new RelayCommand(RefreshWorkItems, CanRefreshWorkItems);
             RefreshRepositoriesCommand = new RelayCommand(RefreshRepos, CanRefreshRepositories);
             CreateBranchCommand = new RelayCommand(CreateBranch, CanCreatebranch);
             DeleteBranchCommand = new RelayCommand(DeleteBranch, CanDeleteBranch);
             RefreshBranchesCommand = new RelayCommand(RefreshBranches, CanRefreshBranches);
             CancelCreateBranchCommand = new RelayCommand(o => CreateBranchViewModel = null, o => CreateBranchViewModel != null);
-            ConfirmCreateBranchCommand = new RelayCommand(PerformCreateBranch, o => CreateBranchViewModel != null);
+	        ConfirmCreateBranchCommand = new RelayCommand(PerformCreateBranch,
+		        o => CreateBranchViewModel != null && !string.IsNullOrWhiteSpace(CreateBranchViewModel.BranchName) &&
+		             CreateBranchViewModel.BasedOnBranch != null);
             LinkBranchToWorkItemCommand = new RelayCommand(LinkBranchToWorkItem, CanLinkBranchToWorkItem);
             ConfirmCommand = new RelayCommand(ActionConfirmation);
             CloseErrorCommand = new RelayCommand(o => ErrorViewModel = null, o => ErrorViewModel != null);

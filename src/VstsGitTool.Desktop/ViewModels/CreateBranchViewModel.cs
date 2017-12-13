@@ -1,22 +1,31 @@
-﻿using VstsGitTool.VstsClient.Model;
-
-namespace VstsGitTool.Desktop.ViewModels
+﻿namespace VstsGitTool.Desktop.ViewModels
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using Configuration;
 	using VstsClient;
+	using VstsClient.Model;
 
 	public class CreateBranchViewModel : ViewModelBase
     {
-        public VstsGitBranch BasedOnBranch { get; set; }
+	    private string _branchName;
+
+	    public VstsGitBranch BasedOnBranch { get; set; }
 
 	    public IEnumerable<string> BranchGroups => new[] {"feature/", "hotfix/", "release/"};
 
 		public string BranchGroup { get; set; }
 
-		public string BranchName { get; set; }
+	    public string BranchName
+	    {
+		    get => _branchName;
+		    set
+		    {
+			    _branchName = value;
+			    OnPropertyChanged();
+		    }
+	    }
 
 	    public string FullBranchName => $"{BranchGroup}{BranchName}";
 
