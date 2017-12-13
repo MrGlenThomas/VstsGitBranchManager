@@ -235,7 +235,7 @@ namespace VstsGitTool.Desktop.ViewModels
 		    var selectedWorkItemsProject = SelectedWorkItemsProject;
 
 		    var message =
-			    $"Are you sure you want to link the branch '{selectedBranch.Name}' in repository '{selectedRepository.Name}' to work item '{SelectedWorkItem.Title}'?";
+			    $"Are you sure you want to link the branch '{selectedBranch.Name}' in repository '{selectedRepository.Name}' to work item {selectedWorkItem.Id} '{selectedWorkItem.Title}'?";
 
 		    var confirmationViewModel = new ConfirmationViewModel("Link a branch to a work item", message,
 			    ConfirmationButtons.YesNo,
