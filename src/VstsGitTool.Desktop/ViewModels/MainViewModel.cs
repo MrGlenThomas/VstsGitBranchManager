@@ -226,13 +226,40 @@ namespace VstsGitTool.Desktop.ViewModels
             ConfirmationViewModel.PerformAction(confirmationResult);
         }
 
-        private async void LinkBranchToWorkItem(object obj)
-        {
-            await LinkBranchToWorkItemAsync(SelectedBranch.Name, SelectedRepository.Id, SelectedRepositoriesProject.Id,
-                SelectedWorkItem.Id.Value, SelectedWorkItemsProject.Name);
-        }
+	    private void LinkBranchToWorkItem(object obj)
+	    {
+		    var selectedBranch = SelectedBranch;
+		    var selectedRepository = SelectedRepository;
+		    var selectedRepositoriesProject = SelectedRepositoriesProject;
+		    var selectedWorkItem = SelectedWorkItem;
+		    var selectedWorkItemsProject = SelectedWorkItemsProject;
 
-        private bool CanLinkBranchToWorkItem(object obj)
+		    var message =
+			    $"Are you sure you want to link the branch '{selectedBranch.Name}' in repository '{selectedRepository.Name}' to work item '{SelectedWorkItem.Title}'?";
+
+		    var confirmationViewModel = new ConfirmationViewModel("Link a branch to a work item", message,
+			    ConfirmationButtons.YesNo,
+			    confirmationResult =>
+			    {
+				    if (confirmationResult == ConfirmationResult.Yes)
+				    {
+					    PerformLinkBranchToWorkItem(selectedBranch, selectedRepository, selectedRepositoriesProject, selectedWorkItem,
+						    selectedWorkItemsProject);
+				    }
+				    ConfirmationViewModel = null;
+			    });
+
+		    ConfirmationViewModel = confirmationViewModel;
+	    }
+
+	    private async void PerformLinkBranchToWorkItem(VstsGitBranch branch, VstsGitRepository repository,
+		    VstsProject repositoriesProject, VstsWorkItem workItem, VstsProject workItemsProject)
+	    {
+		    await LinkBranchToWorkItemAsync(branch.Name, repository.Id, repositoriesProject.Id,
+			    workItem.Id.Value, workItemsProject.Name);
+	    }
+
+	    private bool CanLinkBranchToWorkItem(object obj)
         {
             return SelectedBranch != null && SelectedRepository != null && SelectedRepositoriesProject != null &&
                    SelectedWorkItem != null && SelectedWorkItemsProject != null;
