@@ -12,7 +12,7 @@
     <Grid>
         <StackPanel Orientation="Horizontal">
             <Button Command="{Binding LinkBranchToWorkItemCommand}" Content="LINK BRANCH TO WORK ITEM"/>
-            <Button Command="{Binding CreatePullRequestCommand}" Content="CREATE PULL REQUEST"/>
+            <!--<Button Command="{Binding CreatePullRequestCommand}" Content="CREATE PULL REQUEST"/>-->
             <Button Command="{Binding DeleteBranchCommand}" Content="DELETE BRANCH"/>
         </StackPanel>
     </Grid>
