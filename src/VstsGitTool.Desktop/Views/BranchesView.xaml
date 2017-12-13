@@ -57,11 +57,19 @@
                 <Image Source="{StaticResource RefreshLightIcon}" Width="14"/>
             </Button>
         </StackPanel>
-        <local:BranchesMenuView Grid.Column="1" HorizontalAlignment="Right"/>
-        <ListBox Grid.Column="1"
-                 Grid.Row="1"
-                 ItemsSource="{Binding Branches}"
-                 SelectedItem="{Binding SelectedBranch}"
-                 ItemTemplate="{StaticResource BranchTemplate}"/>
+        <local:BranchesMenuView Grid.Column="1" 
+                                HorizontalAlignment="Right"/>
+        <Grid Grid.Column="1"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox ItemsSource="{Binding Branches}"
+                     SelectedItem="{Binding SelectedBranch}"
+                     ItemTemplate="{StaticResource BranchTemplate}"/>
+            <local:BranchMenuView Grid.Row="1"
+                                  HorizontalAlignment="Right"/>
+        </Grid>
     </Grid>
 </UserControl>
