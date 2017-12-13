@@ -81,17 +81,24 @@ namespace VstsGitTool.Desktop.ViewModels
 		    switch (workItem.Type)
 		    {
 			    case "Product Backlog Item":
-				    return branches.Any(b => b.Name.Equals("develop"))
-					    ? branches.Single(b => b.Name.Equals("develop"))
-					    : branches.SingleOrDefault(b => b.Name.Equals("master"));
+				    return branches.Any(b => b.Name.Equals("develop", StringComparison.InvariantCultureIgnoreCase))
+					    ? branches.Single(b => b.Name.Equals("develop", StringComparison.InvariantCultureIgnoreCase))
+					    : branches.SingleOrDefault(b => b.Name.Equals("master", StringComparison.InvariantCultureIgnoreCase));
 			    case "Bug":
-				    return branches.SingleOrDefault(b => b.Name.Equals("master"));
+				    var bugWorkItemDefaultSourceBranch = UserConfiguration.BugWorkItemDefaultSourceBranch;
+				    var defaultBugSourceBranch = branches.SingleOrDefault(b => b.Name.Equals(bugWorkItemDefaultSourceBranch,
+					    StringComparison.InvariantCultureIgnoreCase));
+					if (defaultBugSourceBranch != null)
+					{
+						return defaultBugSourceBranch;
+					}
+					return branches.SingleOrDefault(b => b.Name.Equals("master", StringComparison.InvariantCultureIgnoreCase));
 			    case "Task":
-				    return branches.Any(b => b.Name.Equals("develop"))
-					    ? branches.Single(b => b.Name.Equals("develop"))
-					    : branches.SingleOrDefault(b => b.Name.Equals("master"));
+				    return branches.Any(b => b.Name.Equals("develop", StringComparison.InvariantCultureIgnoreCase))
+					    ? branches.Single(b => b.Name.Equals("develop", StringComparison.InvariantCultureIgnoreCase))
+					    : branches.SingleOrDefault(b => b.Name.Equals("master", StringComparison.InvariantCultureIgnoreCase));
 				default:
-					return branches.SingleOrDefault(b => b.Name.Equals("master"));
+					return branches.SingleOrDefault(b => b.Name.Equals("master", StringComparison.InvariantCultureIgnoreCase));
 			}
 	    }
 
@@ -104,7 +111,13 @@ namespace VstsGitTool.Desktop.ViewModels
 			    case "Product Backlog Item":
 				    return "feature/";
 			    case "Bug":
-				    return "hotfix/";
+				    var bugWorkItemDefaultBranchGroup = UserConfiguration.BugWorkItemDefaultBranchGroup;
+				    var defaultBugBranchGroup = BranchGroups.SingleOrDefault(bg => bg.Equals(bugWorkItemDefaultBranchGroup));
+				    if (!string.IsNullOrEmpty(defaultBugBranchGroup))
+				    {
+					    return defaultBugBranchGroup;
+				    }
+					return "hotfix/";
 			    case "Task":
 				    return "task/";
 			    default:

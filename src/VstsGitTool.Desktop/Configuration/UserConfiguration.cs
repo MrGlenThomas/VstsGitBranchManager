@@ -41,5 +41,9 @@ namespace VstsGitTool.Desktop.Configuration
 			    return maxBranchNameLength;
 		    }
 	    }
+
+	    public static string BugWorkItemDefaultBranchGroup => ConfigurationManager.AppSettings["BugWorkItemDefaultBranchGroup"];
+
+	    public static string BugWorkItemDefaultSourceBranch => ConfigurationManager.AppSettings["BugWorkItemDefaultSourceBranch"];
 	}
 }
