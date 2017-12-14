@@ -63,7 +63,8 @@
                         <ContentPresenter Grid.Row="1"
                                           Margin="10,5"
                                           ContentTemplate="{StaticResource ProjectTemplate}"
-                                          Content="{Binding SelectedRepositoriesProject}"/>
+                                          Content="{Binding SelectedRepositoriesProject}"
+                                          VerticalAlignment="Center"/>
                         <TextBlock Margin="10,5"
                                    Grid.Column="1">Repository</TextBlock>
                         <ComboBox Grid.Row="1"
