@@ -34,7 +34,8 @@
         public bool CanLinkToWorkItem => WorkItem != null;
 
         public VstsWorkItem WorkItem { get; }
-	    public VstsGitRepository Repository { get; }
+
+	    public VstsGitRepository Repository { get; set; }
 
 	    public CreateBranchViewModel(IEnumerable<VstsGitBranch> branches, VstsWorkItem vstsWorkItem, VstsGitRepository repository)
         {

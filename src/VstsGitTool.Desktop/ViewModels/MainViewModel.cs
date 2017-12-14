@@ -501,7 +501,7 @@ namespace VstsGitTool.Desktop.ViewModels
                 var selectedWorkItemProject = SelectedWorkItemsProject;
                 var selectedRepoProject = SelectedRepositoriesProject;
                 var workItem = CreateBranchViewModel.WorkItem;
-                var repository = SelectedRepository;
+                var repository = CreateBranchViewModel.Repository;
 
                 if (selectedWorkItemProject == null)
                 {
